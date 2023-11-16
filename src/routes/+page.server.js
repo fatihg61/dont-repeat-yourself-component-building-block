@@ -3,41 +3,20 @@ import { hygraph } from '$lib/utils/hygraph.js'
 
 export async function load() {
     let query = gql`
-        query HomeQuery {
-            homepages {
-                introMain {
-                    bgVideo {
-                        url
-                    }
-                }
-                mainIntroAboutUs {
-                    introTextAbout
-                    aboutUsLink
-                }
-                playerCards {
+    query SponsorQuery {
+            sponsorPages {
+                sponsorMain {
                     title
-                    subTitle
-                    imgPlayer {
-                        url
-                    }
-                }
-                growingNumbers {
-                    titleNumbers
-                    titleNumbers2
-                    titleNumbers3
-                    textNumbers
-                    numberChilderenSaved
-                    titleChilderSaved
-                    numberTalents
-                    titleTalents
-                    numberPartners
-                    titlePartners
-                    numberClubs
-                    titleClubs
+                    subTextSponsor
+                    titleSponsorOption
+                    textSponsorOption
+                    titleSponsorOption2
+                    textSponsorOption2
+                    titleSponsorOption3
+                    textSponsorOption3
                 }
             }
         }
     `
-
     return await hygraph.request(query)
 }

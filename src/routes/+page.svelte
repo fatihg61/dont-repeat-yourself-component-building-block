@@ -8,7 +8,7 @@
 
     let showPopup = false;
 
-  // Progressive Enhancement: Enhance the donation button with JavaScript
+ 
   onMount(() => {
     const donateButton = document.querySelector("#donate-button");
 

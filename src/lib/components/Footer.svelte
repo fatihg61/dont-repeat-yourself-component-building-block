@@ -4,7 +4,7 @@
 <footer>
     <div class="footer-container">
         <nav>
-            <ul class="footer-navbar">
+            <li class="footer-navbar">
                 <div class="link-container">
                     <li><a href="/">Home</a></li>
                 </div>
@@ -14,7 +14,7 @@
                 <div class="link-container">
                     <li><a href="/promise">Promise</a></li>
                 </div>
-            </ul>
+            </li>
         </nav>
         <ul class="contact-info">
             <li><a href="tel:+31 20 1234679">+31 20 1234679</a></li>

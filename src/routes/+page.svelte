@@ -24,6 +24,7 @@ function closePopup() {
 
 <Header />
 
+
 <main>
 
     <section class="page2-sponsor-page">
@@ -38,7 +39,7 @@ function closePopup() {
                         fill="" />
                 </svg>
                 <div class="options-text-wrapper">
-                    <h4 class="black">Option 1</h4>
+                    <h3 class="black">Option 1</h3>
                     <p class="black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris</p>
@@ -52,7 +53,7 @@ function closePopup() {
                         fill="" />
                 </svg>
                 <div class="options-text-wrapper">
-                    <h4>Option 2</h4>
+                    <h3>Option 2</h3>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -68,7 +69,7 @@ function closePopup() {
                         fill="" />
                 </svg>
                 <div class="options-text-wrapper">
-                    <h4>Option 3</h4>
+                    <h3>Option 3</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                         laboris</p>
@@ -249,14 +250,14 @@ p {
 }
 
 
-.page2-options-wrapper h4 {
+.page2-options-wrapper h3 {
     font-size: 2em;
     font-family: var(--paragraph-font);
     margin-bottom: 1em;
 }
 
 #donate-button {
-    background-color: #007bff;
+    background-color: #0055B8;
     color: #fff;
     padding: 10px 20px;
     border: none;

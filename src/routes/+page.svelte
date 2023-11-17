@@ -8,18 +8,19 @@
 
     let showPopup = false;
 
-onMount(() => {
-  const donateButton = document.querySelector('#donate-button');
+  // Progressive Enhancement: Enhance the donation button with JavaScript
+  onMount(() => {
+    const donateButton = document.querySelector("#donate-button");
 
-  donateButton.addEventListener('click', () => {
-    showPopup = true;
+    donateButton.addEventListener("click", () => {
+      showPopup = true;
+    });
   });
-});
 
-function closePopup() {
-  showPopup = false;
-}
-
+  // Accessibility: Add aria-label to the donate button for screen readers
+  function closePopup() {
+    showPopup = false;
+  }
 </script>
 
 <Header />

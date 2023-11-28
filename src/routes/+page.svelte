@@ -414,4 +414,34 @@ label[for="formulier"]:hover {
       width: 80%;
     }
   }
+
+  /* Media queries for small screens (up to 768px) */
+@media (max-width: 768px) {
+  section {
+    padding: 0 2em;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+
+  .page2-sponsor-page {
+    padding-top: 5em;
+  }
+
+  .page2-options-wrapper {
+    height: 67%;
+    flex-direction: column;
+  }
+
+  .options-text-wrapper {
+    top: 10%;
+    left: 10%;
+    width: 80%;
+  }
+}
 </style>

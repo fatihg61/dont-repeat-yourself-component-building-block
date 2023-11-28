@@ -56,9 +56,7 @@
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
             </p>
             <!-- Button for Option 1 -->
-            <button id="donate-button" on:click={() => (showPopup = true)}
-              >Donate</button
-            >
+            <label for="formulier">formulier</label>
           </div>
         </div>
       </div>
@@ -86,9 +84,7 @@
             ad minim veniam, quis nostrud exercitation ullamco laboris
           </p>
           <!-- Button for Option 2 -->
-          <button id="donate-button" on:click={() => (showPopup = true)}
-            >Donate</button
-          >
+          <label for="formulier">formulier</label>
         </div>
       </div>
 
@@ -115,16 +111,17 @@
             ad minim veniam, quis nostrud exercitation ullamco laboris
           </p>
           <!-- Button for Option 3 -->
-          <button id="donate-button" on:click={() => (showPopup = true)}
-            >Donate</button
-          >
+          <label for="formulier">formulier</label>
         </div>
       </div>
     </div>
   </section>
 
+  <input type="checkbox" id="formulier" style="display: none;">
+
+
   <!-- Popup for donation form -->
-  {#if showPopup}
+  <!-- {#if showPopup} -->
     <div class="popup">
       <form class="donation-form">
         <!-- Donation form fields -->
@@ -184,7 +181,7 @@
       <!-- Close button for the popup -->
       <button on:click={closePopup} class="popup-close-btn">Close</button>
     </div>
-  {/if}
+  <!-- {/if} -->
 </main>
 
 <Footer />
@@ -192,6 +189,31 @@
 <style>
   /* General form styles */
 
+  input#formulier:checked ~ .popup {
+    display: flex;
+  }
+
+  label[for="formulier"] {
+  background-color: #0055b8;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+label[for="formulier"]:hover {
+  background-color: #0069d9;
+}
+
+@media (max-width: 768px) {
+  label[for="formulier"] {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
   .popup {
     position: fixed;
     top: 0;
@@ -203,6 +225,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    display:none;
   }
 
   .popup-title {
@@ -356,20 +379,10 @@
     margin-bottom: 1em;
   }
 
-  #donate-button {
-    background-color: #0055b8;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  #donate-button:hover {
-    background-color: #0069d9;
-  }
+  label {
+  display: block;
+  margin-bottom: 5px;
+}
 
   @media (max-width: 768px) {
     /* Style for small screens (up to 768px) */

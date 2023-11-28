@@ -3,7 +3,7 @@
 
 <footer>
     <div class="footer-container">
-        <nav>
+        <menu>
             <li class="footer-navbar">
                 <div class="link-container">
                     <li><a href="/">Home</a></li>
@@ -15,7 +15,7 @@
                     <li><a href="/promise">Promise</a></li>
                 </div>
             </li>
-        </nav>
+        </menu>
         <ul class="contact-info">
             <li><a href="tel:+31 20 1234679">+31 20 1234679</a></li>
             <li><a href="mailto:info@ink.org">info@ink.org</a></li>
@@ -128,7 +128,7 @@ footer a {
     justify-content: space-between;
 }
 
-footer nav {
+footer menu {
     display: flex;
     flex-direction: row;
 }

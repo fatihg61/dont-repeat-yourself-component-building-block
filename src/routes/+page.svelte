@@ -1,25 +1,74 @@
 <script>
   import Header from "$lib/components/Header.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
 
-  // export let data
-  // console.log(data.sponsorPages)
-
-  let showPopup = false;
+  let name, creditCardNumber, expirationDate, cvv, dollar;
+  let errorMessages = [];
 
   onMount(() => {
-    const donateButton = document.querySelector("#donate-button");
+    const form = document.querySelector('form.donation-form');
 
-    donateButton.addEventListener("click", () => {
-      showPopup = true;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      errorMessages = [];
+
+      validateName();
+      validateCreditCardNumber();
+      validateExpirationDate();
+      validateCVV();
+      validateDollar();
+
+      if (errorMessages.length > 0) {
+        displayErrorMessages();
+        return;
+      }
+
+      submitForm();
     });
+
+    function validateName() {
+      if (!name) {
+        errorMessages.push('Please enter your name');
+      }
+    }
+
+    function validateCreditCardNumber() {
+      if (!creditCardNumber || creditCardNumber.length < 16) {
+        errorMessages.push('Please enter a valid credit card number');
+      }
+    }
+
+    function validateExpirationDate() {
+      if (!expirationDate) {
+        errorMessages.push('Please enter your credit card expiration date');
+      }
+    }
+
+    function validateCVV() {
+      if (!cvv || cvv.length < 3) {
+        errorMessages.push('Please enter your credit card CVV');
+      }
+    }
+
+    function validateDollar() {
+      if (!dollar) {
+        errorMessages.push('Please enter a donation amount');
+      }
+    }
+
+    function displayErrorMessages() {
+      const errorMessageElement = document.querySelector('.error-messages');
+      errorMessageElement.textContent = errorMessages.join('\n');
+      errorMessageElement.style.display = 'block';
+    }
+
+    function submitForm() {
+      console.log('Submitting form...');
+    }
   });
 
-  // Accessibility: Add aria-label to the donate button for screen readers
-  function closePopup() {
-    showPopup = false;
-  }
 </script>
 
 <Header />
@@ -121,66 +170,64 @@
 
 
   <!-- Popup for donation form -->
-  <!-- {#if showPopup} -->
-    <div class="popup">
-      <form class="donation-form">
-        <!-- Donation form fields -->
-        <div class="form-group">
-          <label for="name" class="form-label">Donate from here</label>
-        </div>
+  <div class="popup">
+    <form class="donation-form">
+      <fieldset>
+        <legend>Donate from here</legend>
+  
         <div class="form-group">
           <label for="name" class="form-label">Name:</label>
-          <input type="text" id="name" class="form-control" required />
+          <input type="text" id="name" class="form-control" on:input={(event) => name = event.detail.value} required />
         </div>
+  
         <div class="form-group">
-          <label for="creditCardNumber" class="form-label"
-            >Credit Card Number:</label
-          >
+          <label for="creditCardNumber" class="form-label">Credit Card Number:</label>
           <input
             type="number"
             id="creditCardNumber"
             class="form-control"
+            on:input={(event) => creditCardNumber = event.detail.value}
             required
           />
         </div>
+  
         <div class="form-group">
-          <label for="expirationDate" class="form-label">Expiration Date:</label
-          >
+          <label for="expirationDate" class="form-label">Expiration Date:</label>
           <input
             type="date"
             id="expirationDate"
             class="form-control"
+            on:input={(event) => expirationDate = event.detail.value}
             required
           />
         </div>
+  
         <div class="form-group">
           <label for="cvv" class="form-label">CVV:</label>
-          <input type="number" id="cvv" class="form-control" required />
+          <input type="number" id="cvv" class="form-control" on:input={(event) => cvv = event.detail.value} required />
         </div>
-        <div class="form-group">
-          <label for="option" class="form-label">Select an option:</label>
-          <select id="option" class="form-select" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="dollar" class="form-label">Donation Amount ($):</label>
-          <input
-            type="number"
-            id="dollar"
-            class="form-control"
-            required
-            pattern="[0-9.]+$"
-          />
-        </div>
-        <!-- Submit button for donation form -->
-        <button type="submit" class="form-btn">Donate</button>
-      </form>
-      <!-- Close button for the popup -->
-      <button on:click={closePopup} class="popup-close-btn">Close</button>
-    </div>
+      </fieldset>
+  
+      <div class="form-group">
+        <label for="option" class="form-label">Select an option:</label>
+        <select id="option" class="form-select" on:input={(event) => dollar = event.detail.value} required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="dollar" class="form-label">Donation Amount ($):</label>
+        <input type="number" id="dollar" class="form-control" on:input={(event) => dollar = event.detail.value} required />
+      </div>
+  
+      <div class="error-messages" style="display: none;"></div>
+  
+      <button type="submit" class="form-btn">Donate</button>
+    </form>
+  </div>
+  
   <!-- {/if} -->
 </main>
 
@@ -240,14 +287,12 @@ label[for="formulier"]:hover {
   }
 
   .popup-close-btn {
+    /* Your button styles go here */
     position: absolute;
     top: 10px;
     right: 10px;
-    padding: 5px 10px;
-    background-color: #ccc;
-    border: none;
     cursor: pointer;
-  }
+}
 
   /* Form styles */
 
@@ -302,6 +347,22 @@ label[for="formulier"]:hover {
       max-width: unset;
     }
   }
+
+.donation-form fieldset {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+  legend {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
 
   section {
     padding: 0 6em;
